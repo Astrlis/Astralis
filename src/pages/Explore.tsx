@@ -254,7 +254,7 @@ export default function Explore() {
                 animate={{
                   opacity: 1,
                   scale: 1,
-                  zIndex: isExpanded ? 10 : 1,
+                  z: isExpanded ? 10 : 1,
                 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{

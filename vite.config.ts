@@ -6,27 +6,33 @@ import path from "path";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 3000,
   },
-  plugins: [
-    react(),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      stream: 'stream-browserify',
-      buffer: 'buffer',
+      stream: "stream-browserify",
+      buffer: "buffer",
     },
   },
   define: {
-    'global': 'globalThis',
-    'process.env': {}
+    global: "globalThis",
+    "process.env": {},
   },
   optimizeDeps: {
     esbuildOptions: {
       define: {
-        global: 'globalThis'
-      }
-    }
-  }
+        global: "globalThis",
+      },
+    },
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+      exclude: [
+        /node_modules\/@trezor\/connect-common\/node_modules\/@trezor\/env-utils/,
+      ],
+    },
+  },
 }));

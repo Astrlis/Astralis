@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,9 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNFT } from "@/contexts/NFTContext";
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
-import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import {
   User,
   MapPin,
@@ -67,7 +65,7 @@ export default function Profile() {
         const balance = await connection.getBalance(publicKey);
         setBalance(balance / LAMPORTS_PER_SOL);
       } catch (error) {
-        console.error('Error fetching balance:', error);
+        console.error("Error fetching balance:", error);
         toast({
           title: "Error",
           description: "Failed to fetch wallet balance",
@@ -95,7 +93,7 @@ export default function Profile() {
           (account) => {
             setBalance(account.lamports / LAMPORTS_PER_SOL);
           },
-          'confirmed'
+          "confirmed"
         );
       }
     };
@@ -123,10 +121,10 @@ export default function Profile() {
   });
 
   const formatBalance = (balance: number | null): string => {
-    if (balance === null) return '0.00';
-    return balance.toLocaleString('en-US', {
+    if (balance === null) return "0.00";
+    return balance.toLocaleString("en-US", {
       minimumFractionDigits: 2,
-      maximumFractionDigits: 4
+      maximumFractionDigits: 4,
     });
   };
 
@@ -137,7 +135,7 @@ export default function Profile() {
   };
 
   const formatWalletAddress = (address: string | null): string => {
-    if (!address) return '';
+    if (!address) return "";
     return `${address.slice(0, 4)}...${address.slice(-4)}`;
   };
 
@@ -186,7 +184,9 @@ export default function Profile() {
                         className="gap-1 bg-white/90 backdrop-blur-sm"
                       >
                         <Wallet className="h-4 w-4" />
-                        <span>{formatWalletAddress(publicKey?.toString())}</span>
+                        <span>
+                          {formatWalletAddress(publicKey?.toString())}
+                        </span>
                         <ChevronDown className="h-3 w-3 opacity-50" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -195,7 +195,9 @@ export default function Profile() {
                         className="text-sm"
                         onClick={() => {
                           // Copy wallet address to clipboard
-                          navigator.clipboard.writeText(publicKey?.toString() || '');
+                          navigator.clipboard.writeText(
+                            publicKey?.toString() || ""
+                          );
                           toast({
                             title: "Address Copied",
                             description: "Wallet address copied to clipboard",

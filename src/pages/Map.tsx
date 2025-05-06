@@ -25,12 +25,12 @@
 //   publicKey,
 // } from "@metaplex-foundation/umi";
 // import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
-// import { 
-//   QrCode, 
-//   Navigation, 
-//   Compass, 
-//   Check, 
-//   Clock, 
+// import {
+//   QrCode,
+//   Navigation,
+//   Compass,
+//   Check,
+//   Clock,
 //   Map as MapIcon,
 //   X,
 //   MapPin,
@@ -84,7 +84,7 @@
 //   const { connection } = useConnection();
 //   const wallet = useWallet();
 //   const { publicKey: walletPublicKey, connected, connecting } = wallet;
-  
+
 //   const [scanning, setScanning] = useState(false);
 //   const [claiming, setClaiming] = useState(false);
 //   const [showDirections, setShowDirections] = useState(false);
@@ -120,7 +120,7 @@
 //         `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`
 //       );
 //       const json = await query.json();
-      
+
 //       if (json.routes?.[0]) {
 //         setRouteGeoJson({
 //           type: 'Feature',
@@ -151,11 +151,11 @@
 //   useEffect(() => {
 //     if (currentNFT && userLocation) {
 //       const distance = Math.sqrt(
-//         Math.pow(userLocation.lat - currentNFT.location.lat, 2) + 
+//         Math.pow(userLocation.lat - currentNFT.location.lat, 2) +
 //         Math.pow(userLocation.lng - currentNFT.location.lng, 2)
 //       );
 //       // For testing purposes, you might want to set this to true to test minting
-//       setNearDestination(distance < 0.002); 
+//       setNearDestination(distance < 0.002);
 //     }
 //   }, [currentNFT, userLocation]);
 
@@ -202,7 +202,7 @@
 //       const umi = createUmi(connection.rpcEndpoint)
 //         .use(mplTokenMetadata())
 //         .use(walletAdapterIdentity(wallet));
-      
+
 //       // Generate a new mint signer
 //       const mint = generateSigner(umi);
 
@@ -221,13 +221,13 @@
 //       }).sendAndConfirm(umi);
 
 //       // Wait for transaction confirmation
-//       await umi.rpc.confirmTransaction(signature, { 
+//       await umi.rpc.confirmTransaction(signature, {
 //         strategy: { type: 'blockhash', ...(await umi.rpc.getLatestBlockhash()) },
 //       });
 
 //       // Fetch the created NFT
 //       const createdNft = await fetchDigitalAsset(umi, mint.publicKey);
-      
+
 //       return {
 //         success: true,
 //         mintAddress: mint.publicKey,
@@ -252,13 +252,13 @@
 //       });
 //       return;
 //     }
-    
+
 //     setScanning(true);
 //     setClaiming(true);
-    
+
 //     try {
 //       const result = await mintNFT();
-      
+
 //       // Even if we get an error fetching the NFT, we'll treat it as success
 //       // since the NFT might still be minted
 //       if (result?.mintAddress) {
@@ -268,28 +268,28 @@
 //           // Update the mint address after successful minting
 //           updateNFTMint(currentNFT.id, result.mintAddress.toString());
 //         }
-        
+
 //         setMintResult({
 //           success: true,
 //           mintAddress: result.mintAddress,
 //           nft: result.nft || null,
 //           signature: result.signature
 //         });
-          
+
 //         toast({
 //           title: "NFT Claimed Successfully!",
 //           description: "Check your wallet for the NFT. It may take a few minutes to appear.",
 //         });
-        
+
 //         setMintedNftAddress(result.mintAddress.toString());
 //       } else {
 //         throw new Error("No mint address returned");
 //       }
 //     } catch (error) {
 //       console.error("Error in claim process:", error);
-      
+
 //       // If it's either the AccountNotFoundError or No mint address error, still show success
-//       if (error.message?.includes("AccountNotFoundError") || 
+//       if (error.message?.includes("AccountNotFoundError") ||
 //           error.message?.includes("No mint address returned")) {
 //         toast({
 //           title: "NFT Likely Claimed Successfully",
@@ -347,8 +347,8 @@
 //           {!connected ? (
 //             <WalletMultiButton />
 //           ) : currentNFT && nearDestination && (
-//             <Button 
-//               onClick={handleScan} 
+//             <Button
+//               onClick={handleScan}
 //               disabled={scanning || claiming}
 //               className="gap-2"
 //             >
@@ -372,7 +372,7 @@
 //               )}
 //             </Button>
 //           )}
-          
+
 //           <Sheet>
 //             <SheetTrigger asChild>
 //               <Button variant="outline" size="icon">
@@ -386,7 +386,7 @@
 //                   Follow these directions to claim your NFT
 //                 </SheetDescription>
 //               </SheetHeader>
-              
+
 //               {currentNFT ? (
 //                 <div className="py-4 space-y-4">
 //                   <div className="flex justify-between items-center">
@@ -397,7 +397,7 @@
 //                         <p className="text-sm text-gray-500">Destination</p>
 //                       </div>
 //                     </div>
-                    
+
 //                     <div className="text-right">
 //                       <div className="flex items-center text-gray-700">
 //                         <Clock className="h-4 w-4 mr-1" />
@@ -416,7 +416,7 @@
 //           </Sheet>
 //         </div>
 //       </div>
-      
+
 //       <div className="relative h-[calc(100vh-12rem)] rounded-xl overflow-hidden shadow-inner">
 //         <Map
 //           {...viewState}
@@ -436,7 +436,7 @@
 //             }}
 //           />
 //           <NavigationControl position="top-right" />
-          
+
 //             {/* User location marker */}
 //             <Marker
 //               latitude={userLocation.lat}
@@ -448,7 +448,7 @@
 //                 <div className="absolute h-10 w-10 bg-blue-500 rounded-full -top-3 -left-3 animate-ping opacity-20"></div>
 //               </div>
 //             </Marker>
-            
+
 //             {/* Destination marker */}
 //           {currentNFT && (
 //             <Marker
@@ -501,7 +501,7 @@
 //             </Card>
 //           </div>
 //         )}
-            
+
 //         {nearDestination && (
 //           <div className="absolute bottom-4 left-4 right-4">
 //             <Card className="bg-white/90 backdrop-blur-sm p-4 shadow-lg">
@@ -522,7 +522,7 @@
 //             </Card>
 //           </div>
 //         )}
-        
+
 //         {claiming && (
 //           <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
 //             <div className="bg-white rounded-lg p-8 max-w-sm w-full text-center space-y-4">
@@ -543,7 +543,7 @@
 //             </div>
 //           </div>
 //         )}
-        
+
 //         {/* Success Modal with Solana Explorer Link */}
 //         {mintResult?.success && !claiming && (
 //           <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
@@ -558,7 +558,7 @@
 //                 Your NFT has been minted to your wallet
 //               </p>
 //               <div className="pt-2">
-//                 <Button 
+//                 <Button
 //                   onClick={() => window.open(`https://explorer.solana.com/address/${mintResult.mintAddress.toString()}/devnet`, '_blank')}
 //                   className="w-full flex items-center justify-center gap-2"
 //                 >
@@ -567,8 +567,8 @@
 //                 </Button>
 //               </div>
 //               <div className="pt-2">
-//                 <Button 
-//                   variant="outline" 
+//                 <Button
+//                   variant="outline"
 //                   onClick={() => {
 //                     setMintResult(null);
 //                     navigate('/profile');
@@ -581,7 +581,7 @@
 //           </div>
 //         )}
 //       </div>
-      
+
 //       {currentNFT && (
 //         <div className="bg-gray-50 p-4 rounded-lg">
 //           <h2 className="font-medium mb-2">NFT Location Information</h2>
@@ -597,15 +597,15 @@
 //   );
 // }
 
-import '@solana/wallet-adapter-react-ui/styles.css';
+import "@solana/wallet-adapter-react-ui/styles.css";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import {
   createNft,
   fetchDigitalAsset,
@@ -626,7 +626,7 @@ import Map, {
   Source,
   Layer,
   MapRef,
-  ViewState
+  ViewState,
 } from "react-map-gl";
 import mapboxgl from "mapbox-gl";
 import type { LineLayer } from "mapbox-gl";
@@ -640,7 +640,7 @@ import {
   MapPin,
   ChevronDown,
   Sparkles,
-  ExternalLink
+  ExternalLink,
 } from "lucide-react";
 import {
   Sheet,
@@ -661,8 +661,7 @@ import { motion, AnimatePresence } from "framer-motion";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaGltYW5zaHUtcmF3YXQtNyIsImEiOiJjbTIxcmViNm0weGZnMmpxc2E0dmIwazdhIn0.0n9VXfbQP3k05uC86PMGDg";
 
-
-  const COLLECTION_ADDRESS = "3cPa38rQWYLJ6iij1crMnCgzV3q42sR1ae42tWdGhjqs";
+const COLLECTION_ADDRESS = "3cPa38rQWYLJ6iij1crMnCgzV3q42sR1ae42tWdGhjqs";
 
 const INITIAL_VIEW_STATE: Partial<ViewState> = {
   latitude: 28.4996139,
@@ -690,7 +689,8 @@ const routeLayerStyle: LineLayer = {
 export default function MapPage() {
   const [searchParams] = useSearchParams();
   const nftId = searchParams.get("nft");
-  const { nfts, claimNFT, userLocation, watchUserLocation, updateNFTMint } = useNFT();
+  const { nfts, claimNFT, userLocation, watchUserLocation, updateNFTMint } =
+    useNFT();
   const { toast } = useToast();
   const navigate = useNavigate();
   const { connection } = useConnection();
@@ -831,7 +831,7 @@ export default function MapPage() {
       toast({
         title: "Connection Error",
         description: "No connection to Solana network",
-        variant: "destructive"
+        variant: "destructive",
       });
       return null;
     }
@@ -840,7 +840,7 @@ export default function MapPage() {
       toast({
         title: "Wallet Not Connected",
         description: "Please connect your wallet first",
-        variant: "destructive"
+        variant: "destructive",
       });
       return null;
     }
@@ -850,7 +850,7 @@ export default function MapPage() {
       const umi = createUmi(connection.rpcEndpoint)
         .use(mplTokenMetadata())
         .use(walletAdapterIdentity(wallet));
-      
+
       // Generate a new mint signer
       const mint = generateSigner(umi);
 
@@ -859,34 +859,39 @@ export default function MapPage() {
         mint,
         name: currentNFT?.name || "India Gate NFT",
         symbol: "LNFT",
-        uri: currentNFT?.imageUrl || "https://raw.githubusercontent.com/himanshu-rawat77/NFT-Go-main/main/public/sample.json",
+        uri:
+          currentNFT?.imageUrl ||
+          "https://raw.githubusercontent.com/himanshu-rawat77/NFT-Go-main/main/public/sample.json",
         sellerFeeBasisPoints: percentAmount(0),
         isCollection: false,
         collection: {
           key: publicKey(COLLECTION_ADDRESS),
           verified: false,
-        }
+        },
       }).sendAndConfirm(umi);
 
       // Wait for transaction confirmation
-      await umi.rpc.confirmTransaction(signature, { 
-        strategy: { type: 'blockhash', ...(await umi.rpc.getLatestBlockhash()) },
+      await umi.rpc.confirmTransaction(signature, {
+        strategy: {
+          type: "blockhash",
+          ...(await umi.rpc.getLatestBlockhash()),
+        },
       });
 
       // Fetch the created NFT
       const createdNft = await fetchDigitalAsset(umi, mint.publicKey);
-      
+
       return {
         success: true,
         mintAddress: mint.publicKey,
         nft: createdNft,
-        signature
+        signature,
       };
     } catch (error) {
       console.error("Error minting NFT:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Failed to mint NFT"
+        error: error instanceof Error ? error.message : "Failed to mint NFT",
       };
     }
   };
@@ -896,17 +901,17 @@ export default function MapPage() {
       toast({
         title: "Wallet Not Connected",
         description: "Please connect your wallet to claim NFTs",
-        variant: "default"
+        variant: "default",
       });
       return;
     }
-    
+
     setScanning(true);
     setClaiming(true);
-    
+
     try {
       const result = await mintNFT();
-      
+
       // Even if we get an error fetching the NFT, we'll treat it as success
       // since the NFT might still be minted
       if (result?.mintAddress) {
@@ -916,32 +921,36 @@ export default function MapPage() {
           // Update the mint address after successful minting
           updateNFTMint(currentNFT.id, result.mintAddress.toString());
         }
-        
+
         setMintResult({
           success: true,
           mintAddress: result.mintAddress,
           nft: result.nft || null,
-          signature: result.signature
+          signature: result.signature,
         });
-          
+
         toast({
           title: "NFT Claimed Successfully!",
-          description: "Check your wallet for the NFT. It may take a few minutes to appear.",
+          description:
+            "Check your wallet for the NFT. It may take a few minutes to appear.",
         });
-        
+
         setMintedNftAddress(result.mintAddress.toString());
       } else {
         throw new Error("No mint address returned");
       }
     } catch (error) {
       console.error("Error in claim process:", error);
-      
+
       // If it's either the AccountNotFoundError or No mint address error, still show success
-      if (error.message?.includes("AccountNotFoundError") || 
-          error.message?.includes("No mint address returned")) {
+      if (
+        error.message?.includes("AccountNotFoundError") ||
+        error.message?.includes("No mint address returned")
+      ) {
         toast({
           title: "NFT Likely Claimed Successfully",
-          description: "The NFT may take a few minutes to appear in your wallet. Please check back later.",
+          description:
+            "The NFT may take a few minutes to appear in your wallet. Please check back later.",
         });
         // Set a temporary success state and still claim the NFT
         if (currentNFT) {
@@ -951,13 +960,13 @@ export default function MapPage() {
           success: true,
           mintAddress: "pending",
           nft: null,
-          signature: null
+          signature: null,
         });
       } else {
         toast({
           title: "Claim Failed",
           description: "Failed to claim and mint NFT",
-          variant: "destructive"
+          variant: "destructive",
         });
       }
     } finally {
@@ -969,11 +978,16 @@ export default function MapPage() {
   const openSolanaExplorer = () => {
     if (mintedNftAddress) {
       // Open Solana Explorer with the NFT address (using devnet)
-      window.open(`https://explorer.solana.com/address/${mintedNftAddress}/devnet`, '_blank');
+      window.open(
+        `https://explorer.solana.com/address/${mintedNftAddress}/devnet`,
+        "_blank"
+      );
     }
   };
 
-  const estimatedTime = currentNFT?.distance ? Math.round(currentNFT.distance * 12) : 0;
+  const estimatedTime = currentNFT?.distance
+    ? Math.round(currentNFT.distance * 12)
+    : 0;
 
   // When no location is available, use Delhi coordinates
   if (!userLocation) {
@@ -1010,33 +1024,36 @@ export default function MapPage() {
           Map Explorer
         </h1>
         <div className="flex space-x-2">
-        {!connected ? (
+          {!connected ? (
             <WalletMultiButton />
-          ) : currentNFT && nearDestination && (
-            <Button 
-              onClick={handleScan} 
-              disabled={scanning || claiming}
-              className="gap-2"
-            >
-              {scanning ? (
-                <>
-                  <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                  Scanning...
-                </>
-              ) : claiming ? (
-                <>
-                  <div className="animate-pulse">
-                    <Check className="h-4 w-4" />
-                  </div>
-                  Claiming...
-                </>
-              ) : (
-                <>
-                  <QrCode className="h-4 w-4" />
-                  Scan QR Code
-                </>
-              )}
-            </Button>
+          ) : (
+            currentNFT &&
+            nearDestination && (
+              <Button
+                onClick={handleScan}
+                disabled={scanning || claiming}
+                className="gap-2"
+              >
+                {scanning ? (
+                  <>
+                    <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
+                    Scanning...
+                  </>
+                ) : claiming ? (
+                  <>
+                    <div className="animate-pulse">
+                      <Check className="h-4 w-4" />
+                    </div>
+                    Claiming...
+                  </>
+                ) : (
+                  <>
+                    <QrCode className="h-4 w-4" />
+                    Scan QR Code
+                  </>
+                )}
+              </Button>
+            )
           )}
 
           <Sheet>
@@ -1295,7 +1312,7 @@ export default function MapPage() {
                   <div>
                     <p className="font-medium">You've arrived!</p>
                     <p className="text-sm text-gray-500">
-                    Congratulations! You've reached your destination.
+                      Congratulations! You've reached your destination.
                     </p>
                   </div>
                 </div>
@@ -1378,42 +1395,47 @@ export default function MapPage() {
         </AnimatePresence>
       </motion.div>
 
-             {/* Success Modal with Solana Explorer Link */}
+      {/* Success Modal with Solana Explorer Link */}
       {mintResult?.success && !claiming && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
-            <div className="bg-white rounded-lg p-8 max-w-sm w-full text-center space-y-4">
-              <div className="flex justify-center">
-                <div className="h-20 w-20 bg-green-100 rounded-full flex items-center justify-center">
-                  <Check className="h-10 w-10 text-green-600" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold">NFT Claimed Successfully!</h3>
-              <p className="text-gray-500">
-                Your NFT has been minted to your wallet
-              </p>
-              <div className="pt-2">
-                <Button 
-                  onClick={() => window.open(`https://explorer.solana.com/address/${mintResult.mintAddress.toString()}/devnet`, '_blank')}
-                  className="w-full flex items-center justify-center gap-2"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  View on Solana Explorer
-                </Button>
-              </div>
-              <div className="pt-2">
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setMintResult(null);
-                    navigate('/profile');
-                  }}
-                >
-                  Go to Profile
-                </Button>
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
+          <div className="bg-white rounded-lg p-8 max-w-sm w-full text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="h-20 w-20 bg-green-100 rounded-full flex items-center justify-center">
+                <Check className="h-10 w-10 text-green-600" />
               </div>
             </div>
+            <h3 className="text-xl font-bold">NFT Claimed Successfully!</h3>
+            <p className="text-gray-500">
+              Your NFT has been minted to your wallet
+            </p>
+            <div className="pt-2">
+              <Button
+                onClick={() =>
+                  window.open(
+                    `https://explorer.solana.com/address/${mintResult.mintAddress.toString()}/devnet`,
+                    "_blank"
+                  )
+                }
+                className="w-full flex items-center justify-center gap-2"
+              >
+                <ExternalLink className="h-4 w-4" />
+                View on Solana Explorer
+              </Button>
+            </div>
+            <div className="pt-2">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setMintResult(null);
+                  navigate("/profile");
+                }}
+              >
+                Go to Profile
+              </Button>
+            </div>
           </div>
-        )}
+        </div>
+      )}
 
       {currentNFT && (
         <motion.div
