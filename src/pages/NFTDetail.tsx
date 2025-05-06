@@ -89,17 +89,15 @@ export default function NFTDetail() {
         <Card className="overflow-hidden border-none shadow-xl">
           <div className="relative">
             <motion.div
-              className="h-72 w-full bg-cover bg-center"
-              style={{
-                backgroundImage: selectedNFT.imageUrl
-                  ? `url(${selectedNFT.imageUrl})`
-                  : "",
-              }}
+              className="relative h-72 w-full bg-cover bg-center"
               initial={{ scale: 1.1, opacity: 0.8 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.7 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${selectedNFT.imageUrl})` }}
+              />
             </motion.div>
 
             <div className="absolute top-4 right-4">
